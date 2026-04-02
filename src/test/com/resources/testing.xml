@@ -3,7 +3,7 @@
     <test name="BaseTest">
         <classes>
             <!-- Use full package path -->
-            <class name="test.com.java.automation.base.DummyTest"/>
+            <class name="src.java.test.com.java.automation.base.DummyTest"/>
         </classes>
     </test>
 </suite>
