@@ -10,7 +10,7 @@ pipeline {
 
         stage('Checkout Repo') {
             steps {
-                git branch: 'main',
+                git branch: 'master',
                     credentialsId: 'github-pat',
                     url: 'https://github.com/pjwarriors/chr-automation-framework.git'
             }
