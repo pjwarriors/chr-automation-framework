@@ -1,4 +1,3 @@
-
 pipeline {
     agent any
 
@@ -11,20 +10,21 @@ pipeline {
 
         stage('Checkout Repo') {
             steps {
-                git branch: 'master',
-                    url: 'https://github.com/pjwarriors/chr-automation-framework/'
+                git branch: 'main',
+                    credentialsId: 'github-pat',
+                    url: 'https://github.com/pjwarriors/chr-automation-framework.git'
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                sh 'mvn clean install -DskipTests'
+                bat 'mvn clean install -DskipTests'
             }
         }
 
         stage('Run TestNG Tests') {
             steps {
-                sh 'mvn test -DsuiteXmlFile=src/test/resources/testng.xml'
+                bat 'mvn test -DsuiteXmlFile=src\\test\\resources\\testng.xml'
             }
             post {
                 always {
@@ -35,12 +35,7 @@ pipeline {
 
         stage('Run Cucumber Tests') {
             steps {
-                sh 'mvn test -Dcucumber.options="--plugin pretty"'
-            }
-            post {
-                always {
-                    cucumber '**/target/cucumber-reports/Cucumber.json'
-                }
+                bat 'mvn test -Dcucumber.options="--plugin json:target\\cucumber-reports\\Cucumber.json"'
             }
         }
 
@@ -59,7 +54,7 @@ pipeline {
         stage('Publish Extent Report') {
             steps {
                 publishHTML(target: [
-                    reportDir: 'target/extent-reports',
+                    reportDir: 'target\\extent-reports',
                     reportFiles: 'index.html',
                     keepAll: true,
                     alwaysLinkToLastBuild: true,
@@ -71,7 +66,7 @@ pipeline {
         stage('Publish Cucumber HTML Report') {
             steps {
                 publishHTML(target: [
-                    reportDir: 'target/cucumber-reports',
+                    reportDir: 'target\\cucumber-reports',
                     reportFiles: 'cucumber-html-reports.html',
                     keepAll: true,
                     alwaysLinkToLastBuild: true,
