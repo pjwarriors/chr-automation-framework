@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="BaseSuite">
+    <test name="BaseTest">
+        <classes>
+            <!-- Use full package path -->
+            <class name="test.com.java.automation.base.DummyTest"/>
+        </classes>
+    </test>
+</suite>
