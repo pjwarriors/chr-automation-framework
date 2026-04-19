@@ -35,7 +35,7 @@ pipeline {
 
         stage('Run Cucumber Tests') {
             steps {
-                bat 'mvn test -Dcucumber.options="--plugin json:target\\cucumber-reports\\Cucumber.json"'
+                bat 'mvn test -Dcucumber.plugin="json:target/cucumber-reports/Cucumber.json"'
             }
         }
 

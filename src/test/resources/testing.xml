@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="AutomationSuite">
+    <test name="UI Tests">
+        <classes>
+            <class name="com.chrobinson.automation.test.ui.HappyPathTests"/>
+        </classes>
+    </test>
+</suite>
